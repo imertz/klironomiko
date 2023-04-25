@@ -1,0 +1,5 @@
+---
+"klironomiko": minor
+---
+
+Added division
