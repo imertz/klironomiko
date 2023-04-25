@@ -1,5 +1,11 @@
 # klironomiko
 
+## 1.0.0
+
+### Major Changes
+
+- 59f6b52: Added calculation of heir percentage
+
 ## 0.3.0
 
 ### Minor Changes
