@@ -1,5 +1,0 @@
----
-"klironomiko": minor
----
-
-Added multiplication
