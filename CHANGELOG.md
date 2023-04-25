@@ -1,5 +1,11 @@
 # klironomiko
 
+## 0.2.0
+
+### Minor Changes
+
+- b97e69e: Added multiplication
+
 ## 0.1.0
 
 ### Minor Changes
