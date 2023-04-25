@@ -1,0 +1,5 @@
+---
+"klironomiko": patch
+---
+
+Fixed workflows
