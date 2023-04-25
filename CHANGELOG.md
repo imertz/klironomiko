@@ -1,5 +1,11 @@
 # klironomiko
 
+## 0.3.0
+
+### Minor Changes
+
+- c24aabb: Added division
+
 ## 0.2.0
 
 ### Minor Changes
