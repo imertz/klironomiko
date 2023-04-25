@@ -15,6 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
+    "@types/node": "^18.16.0",
     "cli": "link:@@changesets/cli",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
