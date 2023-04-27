@@ -1,5 +1,11 @@
 # klironomiko
 
+## 1.0.2
+
+### Patch Changes
+
+- eba4d83: Change uuid to nanoid
+
 ## 1.0.1
 
 ### Patch Changes
