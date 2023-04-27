@@ -14,6 +14,8 @@ type Descendant = {
   descendants?: Descendant[];
   share?: number;
   uuid?: string;
+  alive: boolean;
+  apodochi: boolean;
 };
 
 type Relation =
@@ -39,6 +41,8 @@ type DescendantWithUuid = {
   share?: number;
   fraction?: string;
   uuid: string;
+  alive: boolean;
+  apodochi: boolean;
 };
 
 type Spouse = {
@@ -215,18 +219,54 @@ export function calculateHeirPercentage(relatives: Relatives) {
   }
 }
 
-// // Testing my package
-// const heirPercentage = calculateHeirPercentage({
-//   spouse: {
-//     alive: true,
-//     apodochi: true,
-//   },
-//   parents: 2,
-//   descendants: [],
-// });
+// Testing my package
+const heirPercentage = calculateHeirPercentage({
+  spouse: {
+    alive: true,
+    apodochi: true,
+  },
+  parents: 2,
+  descendants: [
+    {
+      fname: "R",
+      relation: "child",
+      alive: true,
+      apodochi: true,
+      descendants: [
+        {
+          fname: "C",
+          relation: "grand-child",
+          alive: true,
+          apodochi: true,
+          descendants: [
+            {
+              fname: "A",
+              relation: "great-grand-child",
+              alive: true,
+              apodochi: true,
+            },
+            {
+              fname: "B",
+              relation: "great-grand-child",
+              alive: true,
+              apodochi: true,
+            },
+          ],
+        },
+        {
+          fname: "D",
+          relation: "grand-child",
+          alive: true,
+          apodochi: true,
+          descendants: [],
+        },
+      ],
+    },
+  ],
+});
 
-// // Pretty print the heir percentage
-// console.log(JSON.stringify(heirPercentage, null, 2));
+// Pretty print the heir percentage
+console.log(JSON.stringify(heirPercentage, null, 2));
 
 function toFraction(decimal: number) {
   const tolerance = 1.0e-10; // set a tolerance for floating-point comparison
