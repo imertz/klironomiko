@@ -1,5 +1,11 @@
 # klironomiko
 
+## 1.0.1
+
+### Patch Changes
+
+- 9fcf9c2: Changed crypto to webcrypto
+
 ## 1.0.0
 
 ### Major Changes
