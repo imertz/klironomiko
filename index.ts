@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { webcrypto } from "crypto";
 
 type Relatives = {
   spouse: Spouse;
@@ -60,7 +60,7 @@ export function calculateHeirPercentage(relatives: Relatives) {
       return;
     }
 
-    relative.uuid = nanoid().replace(/-/g, "");
+    relative.uuid = webcrypto.randomUUID().replace(/-/g, "");
 
     if (relative.descendants) {
       relative.descendants.forEach((descendant) => {
@@ -87,6 +87,8 @@ export function calculateHeirPercentage(relatives: Relatives) {
     (relative: DescendantWithUuid) => relative.relation === "child"
   );
   const childrenCount = children.length;
+  console.log(childrenCount);
+
   if (childrenCount > 0) {
     const childrenPercentage =
       childrenCount > 0 ? descendantPercentage / childrenCount : 0;
@@ -193,7 +195,7 @@ export function calculateHeirPercentage(relatives: Relatives) {
   }
   if (
     childrenCount === 0 &&
-    (relativesWithUuid.spouse.alive || !relativesWithUuid.spouse.apodochi)
+    (!relativesWithUuid.spouse.alive || !relativesWithUuid.spouse.apodochi)
   ) {
     percentages["parents"] = 1;
     return relativesWithUuid;
@@ -202,7 +204,7 @@ export function calculateHeirPercentage(relatives: Relatives) {
     childrenCount === 0 &&
     relativesWithUuid.spouse.alive &&
     relativesWithUuid.spouse.apodochi &&
-    relativesWithUuid.parents === 0
+    relativesWithUuid.parents !== 0
   ) {
     relativesWithUuid.spouse = {
       ...relativesWithUuid.spouse,
@@ -213,35 +215,18 @@ export function calculateHeirPercentage(relatives: Relatives) {
   }
 }
 
-// Testing my package
-const heirPercentage = calculateHeirPercentage({
-  spouse: {
-    alive: true,
-    apodochi: true,
-  },
-  parents: 2,
-  descendants: [
-    {
-      fname: "John",
-      relation: "child",
-      descendants: [
-        {
-          fname: "John's child",
-          relation: "grand-child",
-          descendants: [
-            {
-              fname: "John's grandchild",
-              relation: "great-grand-child",
-            },
-          ],
-        },
-      ],
-    },
-  ],
-});
+// // Testing my package
+// const heirPercentage = calculateHeirPercentage({
+//   spouse: {
+//     alive: true,
+//     apodochi: true,
+//   },
+//   parents: 2,
+//   descendants: [],
+// });
 
-// Pretty print the heir percentage
-console.log(JSON.stringify(heirPercentage, null, 2));
+// // Pretty print the heir percentage
+// console.log(JSON.stringify(heirPercentage, null, 2));
 
 function toFraction(decimal: number) {
   const tolerance = 1.0e-10; // set a tolerance for floating-point comparison
