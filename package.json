@@ -16,11 +16,12 @@
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
     "@types/node": "^18.16.0",
+    "@types/uuid": "^9.0.1",
     "cli": "link:@@changesets/cli",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "uuidv4": "^6.2.13"
+    "uuid": "^9.0.0"
   }
 }

@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 
 type Relatives = {
   spouse: Spouse;
@@ -60,7 +60,7 @@ export function calculateHeirPercentage(relatives: Relatives) {
       return;
     }
 
-    relative.uuid = uuid().replace(/-/g, "");
+    relative.uuid = uuidv4().replace(/-/g, "");
 
     if (relative.descendants) {
       relative.descendants.forEach((descendant) => {
