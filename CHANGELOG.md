@@ -1,5 +1,11 @@
 # klironomiko
 
+## 1.0.3
+
+### Patch Changes
+
+- dab0f48: Changed to webcrypto.randomUUID and fixed bug with spouse and parents
+
 ## 1.0.2
 
 ### Patch Changes
