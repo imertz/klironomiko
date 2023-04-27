@@ -1,4 +1,4 @@
-import { webcrypto } from "crypto";
+import { nanoid } from "nanoid";
 
 type Relatives = {
   spouse: Spouse;
@@ -60,7 +60,7 @@ export function calculateHeirPercentage(relatives: Relatives) {
       return;
     }
 
-    relative.uuid = webcrypto.randomUUID().replace(/-/g, "");
+    relative.uuid = nanoid().replace(/-/g, "");
 
     if (relative.descendants) {
       relative.descendants.forEach((descendant) => {

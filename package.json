@@ -19,5 +19,8 @@
     "cli": "link:@@changesets/cli",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.2"
   }
 }
