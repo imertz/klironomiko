@@ -1,5 +1,11 @@
 # klironomiko
 
+## 1.0.4
+
+### Patch Changes
+
+- b3ab266: Started using uuidv4 module
+
 ## 1.0.3
 
 ### Patch Changes
