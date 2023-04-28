@@ -35,7 +35,11 @@ type Relation =
   | "nephew"
   | "grand-nephew"
   | "uncle"
-  | "first-cousin";
+  | "first-cousin"
+  | "dads-uncle"
+  | "dads-first-cousin"
+  | "mums-uncle"
+  | "mums-first-cousin";
 
 type RelativesWithUuid = {
   spouse: Spouse;
@@ -525,8 +529,8 @@ export function calculateHeirPercentage(relatives: Relatives) {
         percentages[dadsUncle.uuid] =
           dadsRootPercentage / relativesWithUuid.dadsRoot.length;
 
-        const firstCousins = dadsUncle.descendants.filter(
-          (dadsRootRelative) => dadsRootRelative.relation === "first-cousin"
+        const firstCousins = dadsUncle.descendants.filter((dadsRootRelative) =>
+          dadsRootRelative.relation.includes("first-cousin")
         );
         const firstCousinsPercentage =
           dadsRootPercentage /
@@ -549,8 +553,8 @@ export function calculateHeirPercentage(relatives: Relatives) {
       relativesWithUuid.mumsRoot.forEach((mumsUncle) => {
         percentages[mumsUncle.uuid] =
           mumsRootPercentage / relativesWithUuid.mumsRoot.length;
-        const firstCousins = mumsUncle.descendants.filter(
-          (mumsRootRelative) => mumsRootRelative.relation === "first-cousin"
+        const firstCousins = mumsUncle.descendants.filter((mumsRootRelative) =>
+          mumsRootRelative.relation.includes("first-cousin")
         );
         const firstCousinsPercentage =
           mumsRootPercentage /
