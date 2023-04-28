@@ -1,5 +1,11 @@
 # klironomiko
 
+## 1.0.6
+
+### Patch Changes
+
+- 6abc94f: Added second class of heirs
+
 ## 1.0.5
 
 ### Patch Changes
