@@ -1,5 +1,11 @@
 # klironomiko
 
+## 2.0.1
+
+### Patch Changes
+
+- f40b331: Fixed includes first-cousin
+
 ## 2.0.0
 
 ### Major Changes
