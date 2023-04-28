@@ -1,5 +1,11 @@
 # klironomiko
 
+## 2.0.0
+
+### Major Changes
+
+- 557dfa2: Finished all classes
+
 ## 1.0.6
 
 ### Patch Changes
