@@ -13,21 +13,21 @@ Klironomiko is an open source project that calculates the shares of the heirs of
 
 You can install klironomiko using npm:
 
-\```bash
+```bash
 npm install klironomiko
-\```
+```
 
 ## Usage
 
 First, import the `calculateHeirPercentage` function from the package:
 
-\```javascript
+```javascript
 import { calculateHeirPercentage } from "klironomiko";
-\```
+```
 
 Next, create an object representing the relatives of the deceased person:
 
-\```javascript
+```javascript
 const relatives = {
   spouse: { alive: true, apodochi: true },
   dad: { aliveAndApodochi: true },
@@ -56,14 +56,14 @@ const relatives = {
   dadsRoot: [],
   mumsRoot: [],
 };
-\```
+```
 
 Finally, call the `calculateHeirPercentage` function with the relatives object:
 
-\```javascript
+```javascript
 const result = calculateHeirPercentage(relatives);
 console.log(result);
-\```
+```
 
 The result will contain the shares of the eligible relatives in the estate.
 
