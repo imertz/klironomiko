@@ -36,15 +36,11 @@ const relatives = {
     {
       fname: "John",
       relation: "child",
-      alive: true,
-      apodochi: true,
       descendants: [],
     },
     {
       fname: "Jane",
       relation: "child",
-      alive: true,
-      apodochi: true,
       descendants: [],
     },
   ],
