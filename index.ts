@@ -82,12 +82,10 @@ type Parent = {
   fraction?: string;
 };
 
-export function calculateHeirPercentage(relatives: Relatives) {
+export function calculateHeirPercentage(relatives: Relatives): RelativesWithUuid {
   // Add a random uuid without dashes to each leaf node of the relatives object
   // This is to ensure that each node is unique
-  const relativesWithUuid: RelativesWithUuid = JSON.parse(
-    JSON.stringify(relatives)
-  ); // Deep copy
+  const relativesWithUuid = structuredClone(relatives) as RelativesWithUuid;
   const addUuid = (relative: Relatives | Descendant) => {
     // If uuid is already present, return
     if (relative.uuid) {
@@ -562,7 +560,6 @@ export function calculateHeirPercentage(relatives: Relatives) {
           firstCousins.length;
         firstCousins.forEach((firstCousin) => {
           percentages[firstCousin.uuid] = firstCousinsPercentage;
-          console.log(firstCousin.uuid, firstCousinsPercentage);
         });
       });
     }
@@ -691,236 +688,9 @@ export function calculateHeirPercentage(relatives: Relatives) {
     };
     return relativesWithUuid;
   }
+
+  return relativesWithUuid;
 }
-
-// Testing my package
-const heirPercentage = calculateHeirPercentage({
-  spouse: {
-    alive: true,
-    apodochi: true,
-  },
-  dad: {
-    aliveAndApodochi: false,
-  },
-  mum: {
-    aliveAndApodochi: false,
-  },
-  descendants: [
-    {
-      fname: "R",
-      relation: "child",
-      alive: false,
-      apodochi: true,
-      descendants: [
-        {
-          fname: "C",
-          relation: "grand-child",
-          alive: true,
-          apodochi: false,
-          descendants: [
-            {
-              fname: "A",
-              relation: "great-grand-child",
-              alive: true,
-              apodochi: true,
-              descendants: [],
-            },
-            {
-              fname: "B",
-              relation: "great-grand-child",
-              alive: true,
-              apodochi: true,
-              descendants: [],
-            },
-          ],
-        },
-        {
-          fname: "D",
-          relation: "grand-child",
-          alive: true,
-          apodochi: true,
-          descendants: [],
-        },
-      ],
-    },
-    {
-      fname: "S",
-      relation: "child",
-      alive: true,
-      apodochi: false,
-      descendants: [],
-    },
-    {
-      fname: "W",
-      relation: "child",
-      alive: false,
-      apodochi: true,
-      descendants: [],
-    },
-  ],
-  siblings: [],
-  dadsGrandpa: {},
-  dadsGrandma: {},
-  mumsGrandpa: {},
-  mumsGrandma: {},
-  dadsRoot: [],
-  mumsRoot: [],
-});
-
-const familyTree = {
-  spouse: {
-    alive: false,
-    apodochi: true,
-  },
-  dad: {
-    aliveAndApodochi: true,
-  },
-  mum: {
-    aliveAndApodochi: false,
-  },
-  descendants: [],
-  siblings: [
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [
-        {
-          fname: "S",
-          relation: "nephew",
-
-          descendants: [
-            {
-              fname: "S",
-              relation: "grand-nephew",
-
-              descendants: [],
-            },
-            {
-              fname: "S",
-              relation: "grand-nephew",
-
-              descendants: [] as DescendantWithUuid[],
-            },
-          ],
-        },
-        {
-          fname: "S",
-          relation: "nephew",
-
-          descendants: [] as DescendantWithUuid[],
-        },
-      ] as DescendantWithUuid[],
-      half: true,
-    },
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [] as DescendantWithUuid[],
-      half: true,
-    },
-
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [
-        {
-          fname: "S",
-          relation: "nephew",
-
-          descendants: [] as DescendantWithUuid[],
-        },
-        {
-          fname: "S",
-          relation: "nephew",
-
-          descendants: [] as DescendantWithUuid[],
-        },
-      ] as DescendantWithUuid[],
-      half: false,
-    },
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [] as DescendantWithUuid[],
-      half: false,
-    },
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [] as DescendantWithUuid[],
-      half: false,
-    },
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [] as DescendantWithUuid[],
-      half: false,
-    },
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [] as DescendantWithUuid[],
-      half: false,
-    },
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [] as DescendantWithUuid[],
-      half: false,
-    },
-    {
-      fname: "S",
-      relation: "sibling",
-
-      descendants: [] as DescendantWithUuid[],
-      half: false,
-    },
-  ],
-  dadsGrandpa: {},
-  dadsGrandma: {},
-  mumsGrandpa: {},
-  mumsGrandma: {},
-  dadsRoot: [],
-  mumsRoot: [],
-};
-const familyTree2 = {
-  spouse: {
-    alive: true,
-    apodochi: true,
-  },
-  dad: {
-    aliveAndApodochi: false,
-  },
-  mum: {
-    aliveAndApodochi: false,
-  },
-  descendants: [],
-  siblings: [],
-  dadsGrandpa: {
-    aliveAndApodochi: false,
-  },
-  dadsGrandma: {
-    aliveAndApodochi: false,
-  },
-  mumsGrandpa: { aliveAndApodochi: false },
-  mumsGrandma: {},
-  dadsRoot: [],
-  mumsRoot: [],
-  greatGrandParents: { no: 0 },
-};
-
-const heirPercentage2 = calculateHeirPercentage(familyTree2);
-
-// Pretty print the heir percentage
-console.log(JSON.stringify(heirPercentage2, null, 2));
 
 function toFraction(decimal: number) {
   const tolerance = 1.0e-10; // set a tolerance for floating-point comparison

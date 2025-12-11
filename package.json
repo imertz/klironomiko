@@ -1,27 +1,31 @@
 {
   "name": "klironomiko",
-  "version": "2.0.1",
-  "description": "",
+  "version": "3.0.0",
+  "description": "Calculate inheritance shares according to Greek intestate succession law",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup index.ts --format cjs,esm --dts",
+    "build": "tsdown index.ts --format cjs,esm --dts",
     "release": "pnpm run build && changeset publish",
-    "lint": "tsc"
+    "lint": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "Ioannis Mertzanis",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "devDependencies": {
-    "@changesets/cli": "^2.26.1",
-    "@types/node": "^18.16.0",
-    "@types/uuid": "^9.0.1",
-    "cli": "link:@@changesets/cli",
-    "tsup": "^6.7.0",
-    "typescript": "^5.0.4"
+    "@changesets/cli": "^2.29.0",
+    "@types/node": "^20.0.0",
+    "tsdown": "^0.9.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
   },
   "dependencies": {
-    "uuid": "^9.0.0"
+    "uuid": "^11.0.0"
   }
 }
